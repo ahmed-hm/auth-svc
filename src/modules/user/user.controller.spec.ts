@@ -41,6 +41,7 @@ describe('UserController', () => {
       lastName: 'Doe',
       email: 'Jane@gmail.com',
       password: '123456',
+      role: { _id: new Types.ObjectId(), type: 'SUPER ADMIN' },
     };
 
     const result = await controller.create(createUserDto);
