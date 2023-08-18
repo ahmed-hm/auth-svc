@@ -1,4 +1,5 @@
-import { IsEmail, IsOptional, IsString } from 'class-validator';
+import { IsEmail, IsObject, IsOptional, IsString, ValidateNested } from 'class-validator';
+import { SubRole } from 'src/modules/role/entities/sub-role.entity';
 import { BaseEntity } from 'src/shared/entities';
 
 export class User extends BaseEntity {
@@ -14,4 +15,8 @@ export class User extends BaseEntity {
 
   @IsString()
   password: string;
+
+  @IsObject()
+  @ValidateNested()
+  role: SubRole;
 }
