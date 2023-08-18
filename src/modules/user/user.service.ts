@@ -6,6 +6,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { FindAllUsersDto } from './dto/find-all-users.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserResponsePayloadDto, UsersResponsePayloadDto } from './dto/user-response.dto';
+import { User } from './entities/user.entity';
 import { IUserModel, USER_MODEL_NAME } from './schema/user.schema';
 
 @Injectable()
@@ -21,24 +22,33 @@ export class UserService {
   async findAll({ page, limit, search }: FindAllUsersDto): Promise<UsersResponsePayloadDto> {
     const [docs, total] = await Promise.all([
       this.userModel
-        .find({
-          ...(search && { $text: { $search: search, $caseSensitive: false } }),
-        })
+        .find({ ...(search && { $text: { $search: search, $caseSensitive: false } }) })
         .skip((page - 1) * limit)
         .limit(limit)
         .sort(...(search ? [{ score: { $meta: 'textScore' as const } }] : ['_id'])),
-      this.userModel.countDocuments({
-        ...(search && { $text: { $search: search, $caseSensitive: false } }),
-      }),
+      this.userModel.countDocuments({ ...(search && { $text: { $search: search, $caseSensitive: false } }) }),
     ]);
 
     return { page, pages: Math.ceil(total / limit), limit, total, data: docs };
   }
 
-  async findOne(idOrUser: Types.ObjectId): Promise<UserResponsePayloadDto> {
-    const user = await this.userModel.findById(idOrUser);
+  async findOne(user: Partial<User>): Promise<UserResponsePayloadDto>;
+  async findOne(id: Types.ObjectId): Promise<UserResponsePayloadDto>;
+  async findOne(idOrUser: Types.ObjectId | Partial<User>): Promise<UserResponsePayloadDto> {
+    if (idOrUser instanceof Types.ObjectId) {
+      const user = await this.userModel.findById(idOrUser);
 
-    return { data: user };
+      return { data: user };
+    } else {
+      const { role, email } = idOrUser;
+
+      const user = await this.userModel.findOne({
+        ...(role && { 'role._id': role._id }),
+        ...(email && { email: email.toLowerCase() }),
+      });
+
+      return { data: user };
+    }
   }
 
   async update(id: Types.ObjectId, updateUserDto: UpdateUserDto): Promise<UserResponsePayloadDto> {
