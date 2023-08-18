@@ -1,0 +1,172 @@
+{
+  "role": [
+    {
+      "_id": "64a27b8af50be6424ede3df8",
+      "type": "SUPER ADMIN",
+      "permission": {
+        "user": {
+          "create": true,
+          "read": true,
+          "update": true,
+          "delete": true
+        },
+        "role": {
+          "create": true,
+          "read": true,
+          "update": true,
+          "delete": true
+        }
+      }
+    },
+    {
+      "_id": "64a27b8af50be6424ede3df9",
+      "type": "DEPARTMENT MANAGER",
+      "permission": {
+        "user": {
+          "create": false,
+          "read": true,
+          "update": false,
+          "delete": false
+        },
+        "role": {
+          "create": false,
+          "read": false,
+          "update": false,
+          "delete": false
+        }
+      }
+    },
+    {
+      "_id": "64a27b8af50be6424ede3dfa",
+      "type": "EMPLOYEE",
+      "permission": {
+        "user": {
+          "create": false,
+          "read": true,
+          "update": false,
+          "delete": false
+        },
+        "role": {
+          "create": false,
+          "read": false,
+          "update": false,
+          "delete": false
+        }
+      }
+    }
+  ],
+  "user": [
+    {
+      "_id": "64a27b8af50be6424ede3dfb",
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "John@gmail.com",
+      "password": "123456",
+      "role": { "_id": "64a27b8af50be6424ede3df8", "type": "SUPER ADMIN" }
+    },
+    {
+      "_id": "64a27b8af50be6424ede3dfc",
+      "firstName": "Jane",
+      "lastName": "Doe",
+      "email": "Jane@gmail.com",
+      "password": "123456",
+      "role": { "_id": "64a27b8af50be6424ede3df9", "type": "DEPARTMENT MANAGER" }
+    },
+    {
+      "_id": "64a27b8af50be6424ede3dfd",
+      "firstName": "Jack",
+      "lastName": "Doe",
+      "email": "Jack@gmail.com",
+      "password": "123456",
+      "role": { "_id": "64a27b8af50be6424ede3df9", "type": "DEPARTMENT MANAGER" }
+    },
+    {
+      "_id": "64a27b8af50be6424ede3dfe",
+      "firstName": "Jill",
+      "lastName": "Doe",
+      "email": "Jill@gmail.com",
+      "password": "123456",
+      "role": { "_id": "64a27b8af50be6424ede3df9", "type": "DEPARTMENT MANAGER" }
+    },
+    {
+      "_id": "64a27b8af50be6424ede3dff",
+      "firstName": "James",
+      "lastName": "Doe",
+      "email": "James@gmail.com",
+      "password": "123456",
+      "role": { "_id": "64a27b8af50be6424ede3df9", "type": "DEPARTMENT MANAGER" }
+    },
+    {
+      "_id": "64a27b8af50be6424ede3e01",
+      "firstName": "John",
+      "lastName": "Smith",
+      "email": "john.smith@gmail.com",
+      "password": "abcdef",
+      "role": { "_id": "64a27b8af50be6424ede3dfa", "type": "EMPLOYEE" }
+    },
+    {
+      "_id": "64a27b8af50be6424ede3e02",
+      "firstName": "Sarah",
+      "lastName": "Johnson",
+      "email": "sarah.johnson@gmail.com",
+      "password": "p@ssw0rd",
+      "role": { "_id": "64a27b8af50be6424ede3dfa", "type": "EMPLOYEE" }
+    },
+    {
+      "_id": "64a27b8af50be6424ede3e03",
+      "firstName": "Michael",
+      "lastName": "Brown",
+      "email": "michael.brown@gmail.com",
+      "password": "qwerty",
+      "role": { "_id": "64a27b8af50be6424ede3dfa", "type": "EMPLOYEE" }
+    },
+    {
+      "_id": "64a27b8af50be6424ede3e04",
+      "firstName": "Emily",
+      "lastName": "Davis",
+      "email": "emily.davis@gmail.com",
+      "password": "password123",
+      "role": { "_id": "64a27b8af50be6424ede3dfa", "type": "EMPLOYEE" }
+    },
+    {
+      "_id": "64a27b8af50be6424ede3e05",
+      "firstName": "David",
+      "lastName": "Wilson",
+      "email": "david.wilson@gmail.com",
+      "password": "ilovecoding",
+      "role": { "_id": "64a27b8af50be6424ede3dfa", "type": "EMPLOYEE" }
+    },
+    {
+      "_id": "64a27b8af50be6424ede3e06",
+      "firstName": "Jessica",
+      "lastName": "Taylor",
+      "email": "jessica.taylor@gmail.com",
+      "password": "abc123",
+      "role": { "_id": "64a27b8af50be6424ede3dfa", "type": "EMPLOYEE" }
+    },
+    {
+      "_id": "64a27b8af50be6424ede3e07",
+      "firstName": "Christopher",
+      "lastName": "Anderson",
+      "email": "chris.anderson@gmail.com",
+      "password": "pass1234",
+      "role": { "_id": "64a27b8af50be6424ede3dfa", "type": "EMPLOYEE" }
+    },
+    {
+      "_id": "64a27b8af50be6424ede3e08",
+      "firstName": "Olivia",
+      "lastName": "Martinez",
+      "email": "olivia.martinez@gmail.com",
+      "password": "hello123",
+      "role": { "_id": "64a27b8af50be6424ede3dfa", "type": "EMPLOYEE" }
+    },
+    {
+      "_id": "64a27b8af50be6424ede3e09",
+      "firstName": "William",
+      "lastName": "Clark",
+      "email": "william.clark@gmail.com",
+      "password": "welcome",
+      "role": { "_id": "64a27b8af50be6424ede3dfa", "type": "EMPLOYEE" }
+    }
+  ]
+}
