@@ -1,4 +1,4 @@
-import Joi from 'joi';
+import * as Joi from 'joi';
 import { Environment } from 'src/shared/utils';
 
 export const configSchema = () => {
@@ -15,7 +15,7 @@ export const configSchema = () => {
     MONGODB_HOST: Joi.string().when('NODE_ENV', {
       is: Joi.string().valid(Environment.STAGING, Environment.PRODUCTION),
       then: Joi.required(),
-      otherwise: Joi.optional(),
+      otherwise: Joi.optional().allow(''),
     }),
     JWT_SECRET_KEY: Joi.string().required(),
   });
