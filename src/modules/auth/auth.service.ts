@@ -52,6 +52,14 @@ export class AuthService {
     return { data: token };
   }
 
+  async signOut({ _id, sessionId }: JWTToken): Promise<void> {
+    await this.removeSession(_id, sessionId);
+  }
+
+  async invalidateSessions({ _id }: JWTToken): Promise<void> {
+    await this.removeSessions(_id);
+  }
+
   private async validatePassword(password: string, user: User): Promise<void> {
     const isValid = await compare(password, user.password);
 
@@ -93,7 +101,11 @@ export class AuthService {
     return { accessToken, refreshToken };
   }
 
-  private async removeSession(_id: string, sessionId: string): Promise<void> {
+  private async removeSession(_id: string, sessionId?: string): Promise<void> {
     await this.redisClient.lrem(_id, 0, sessionId);
+  }
+
+  private async removeSessions(_id: string): Promise<void> {
+    await this.redisClient.del(_id);
   }
 }
