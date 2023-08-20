@@ -21,7 +21,7 @@ export class AuthService {
 
   constructor(
     private readonly userService: UserService,
-    private jwtService: JwtService,
+    private readonly jwtService: JwtService,
     private readonly configService: ConfigService,
     private readonly redisService: RedisService,
   ) {
@@ -75,15 +75,16 @@ export class AuthService {
       role: { _id: Pick<Role, 'type' | 'permission'> & { _id: string } };
     }>([{ path: 'role._id', select: '_id type permission' }]);
 
-    const plainUser: UserJWTToken = { ...populatedUser.toJSON(), role: populatedUser.role._id };
-
     const sessionId = v5(v4(), v4());
 
-    const payload: JWTToken = {
-      ...plainUser,
+    const payload = (({ _id, email, firstName, role, lastName }: UserJWTToken): JWTToken => ({
+      _id,
+      email,
+      firstName,
+      role,
       sessionId,
-      password: undefined,
-    };
+      lastName,
+    }))({ ...populatedUser.toJSON(), role: populatedUser.role._id });
 
     const [accessToken, refreshToken] = await Promise.all([
       this.jwtService.signAsync(payload, {

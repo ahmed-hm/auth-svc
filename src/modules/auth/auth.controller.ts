@@ -49,7 +49,7 @@ export class AuthController {
 
   @Post('invalidate-sessions')
   @ApiBearerAuth()
-  async InvalidateSessions(@DecodedJWT() token: JWTToken): Promise<AuthResponseDto> {
+  async invalidateSessions(@DecodedJWT() token: JWTToken): Promise<AuthResponseDto> {
     await this.authService.invalidateSessions(token);
 
     return new AuthResponseDto({
