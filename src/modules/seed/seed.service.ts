@@ -6,7 +6,7 @@ import * as seed from './seed.json';
 
 @Injectable()
 export class SeedService {
-  logger = new Logger('Seed Data');
+  private logger = new Logger('Seed Data');
 
   constructor(
     @InjectModel(ROLE_MODEL_NAME) private readonly roleModel: IRoleModel,
