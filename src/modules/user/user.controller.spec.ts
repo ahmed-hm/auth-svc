@@ -7,9 +7,10 @@ import { UserService } from './user.service';
 describe('UserController', () => {
   let controller: UserController;
   let userService: UserService;
+  let testingModule: TestingModule;
 
-  beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
+  beforeAll(async () => {
+    testingModule = await Test.createTestingModule({
       controllers: [UserController],
     })
       .useMocker((token) => {
@@ -25,8 +26,12 @@ describe('UserController', () => {
       })
       .compile();
 
-    controller = module.get<UserController>(UserController);
-    userService = module.get<UserService>(UserService);
+    controller = testingModule.get<UserController>(UserController);
+    userService = testingModule.get<UserService>(UserService);
+  });
+
+  afterAll(async () => {
+    await testingModule.close();
   });
 
   it('should be defined', () => {
