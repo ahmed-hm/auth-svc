@@ -2,10 +2,12 @@ import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestj
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { IdDto } from 'src/shared/dto';
 import { assertReturn } from 'src/shared/utils';
+import { Permission } from '../auth/decorators';
 import { FindAllRolesDto, RoleResponseDto, RolesResponseDto } from './dto';
 import { CreateRoleDto } from './dto/create-role.dto';
 import { UpdateRoleDto } from './dto/update-role.dto';
 import { RoleService } from './role.service';
+import { ResourceEnum, ResourceOperationEnum } from './types';
 
 @ApiBearerAuth()
 @ApiTags('Role API')
@@ -14,6 +16,7 @@ export class RoleController {
   constructor(private readonly roleService: RoleService) {}
 
   @Post()
+  @Permission({ resource: ResourceEnum.ROLE, resourceOperation: ResourceOperationEnum.CREATE })
   async create(@Body() createRoleDto: CreateRoleDto): Promise<RoleResponseDto> {
     const payload = await this.roleService.create(createRoleDto);
 
@@ -25,6 +28,7 @@ export class RoleController {
   }
 
   @Get()
+  @Permission({ resource: ResourceEnum.ROLE, resourceOperation: ResourceOperationEnum.READ })
   async findAll(@Query() findAllRolesDto: FindAllRolesDto): Promise<RolesResponseDto> {
     const payload = await this.roleService.findAll(findAllRolesDto);
 
@@ -35,6 +39,7 @@ export class RoleController {
   }
 
   @Get(':id')
+  @Permission({ resource: ResourceEnum.ROLE, resourceOperation: ResourceOperationEnum.READ })
   async findOne(@Param() { id }: IdDto): Promise<RoleResponseDto> {
     const payload = await this.roleService.findOne(id);
 
@@ -47,6 +52,7 @@ export class RoleController {
   }
 
   @Patch(':id')
+  @Permission({ resource: ResourceEnum.ROLE, resourceOperation: ResourceOperationEnum.UPDATE })
   async update(@Param() { id }: IdDto, @Body() updateRoleDto: UpdateRoleDto): Promise<RoleResponseDto> {
     const payload = await this.roleService.update(id, updateRoleDto);
 
@@ -57,6 +63,7 @@ export class RoleController {
   }
 
   @Delete(':id')
+  @Permission({ resource: ResourceEnum.ROLE, resourceOperation: ResourceOperationEnum.DELETE })
   async remove(@Param() { id }: IdDto): Promise<RoleResponseDto> {
     const payload = await this.roleService.remove(id);
 

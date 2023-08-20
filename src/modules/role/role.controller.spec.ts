@@ -38,7 +38,7 @@ describe('RoleController', () => {
     const spy = jest.spyOn(roleService, 'create');
 
     const createRoleDto: CreateRoleDto = {
-      type: 'SUPER_ADMIN',
+      type: 'SUPER ADMIN',
       permission: {
         user: {
           create: true,

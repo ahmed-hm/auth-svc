@@ -53,7 +53,7 @@ describe('RoleService', () => {
 
   it('should be able to create role', async () => {
     const createRoleDto: CreateRoleDto = {
-      type: 'SUPER_ADMIN',
+      type: 'SUPER ADMIN',
       permission: {
         user: {
           create: true,
