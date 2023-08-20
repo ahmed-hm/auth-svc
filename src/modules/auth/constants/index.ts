@@ -1,0 +1,2 @@
+export const IS_PUBLIC_GUARD_KEY = Symbol('IS_PUBLIC_GUARD_KEY');
+export const PERMISSION_GUARD_KEY = Symbol('PERMISSION_GUARD_KEY');
