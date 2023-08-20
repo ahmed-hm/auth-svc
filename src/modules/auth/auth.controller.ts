@@ -15,7 +15,7 @@ export class AuthController {
 
   @IsPublic()
   @Post('sign-in')
-  async signin(@Body() signInDto: SignInDto): Promise<AuthResponseDto> {
+  async signIn(@Body() signInDto: SignInDto): Promise<AuthResponseDto> {
     const payload = await this.authService.signIn(signInDto);
 
     return new AuthResponseDto({
@@ -34,6 +34,26 @@ export class AuthController {
     return new AuthResponseDto({
       payload,
       message: 'Token refreshed successfully',
+    });
+  }
+
+  @Post('sign-out')
+  @ApiBearerAuth()
+  async signOut(@DecodedJWT() token: JWTToken): Promise<AuthResponseDto> {
+    await this.authService.signOut(token);
+
+    return new AuthResponseDto({
+      message: 'User signed out successfully',
+    });
+  }
+
+  @Post('invalidate-sessions')
+  @ApiBearerAuth()
+  async invalidateSessions(@DecodedJWT() token: JWTToken): Promise<AuthResponseDto> {
+    await this.authService.invalidateSessions(token);
+
+    return new AuthResponseDto({
+      message: 'Sessions invalidated successfully',
     });
   }
 }

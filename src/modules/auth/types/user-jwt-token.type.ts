@@ -3,7 +3,7 @@ import { Role } from 'src/modules/role/entities/role.entity';
 import { User } from 'src/modules/user/entities/user.entity';
 
 export type UserJWTToken = MergeType<
-  Omit<User, '_id'> & { _id: string },
+  Omit<User, '_id' | 'password' | 'createdAt' | 'updatedAt'> & { _id: string },
   { role: Pick<Role, 'type' | 'permission'> & { _id: string } }
 >;
 
