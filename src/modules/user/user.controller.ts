@@ -2,6 +2,8 @@ import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestj
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { IdDto } from 'src/shared/dto';
 import { assertReturn } from 'src/shared/utils';
+import { Permission } from '../auth/decorators';
+import { ResourceEnum, ResourceOperationEnum } from '../role/types';
 import { CreateUserDto, FindAllUsersDto, UpdateUserDto, UserResponseDto, UsersResponseDto } from './dto';
 import { UserService } from './user.service';
 
@@ -12,6 +14,7 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post()
+  @Permission({ resource: ResourceEnum.USER, resourceOperation: ResourceOperationEnum.CREATE })
   async create(@Body() createUserDto: CreateUserDto): Promise<UserResponseDto> {
     const payload = await this.userService.create(createUserDto);
 
@@ -23,6 +26,7 @@ export class UserController {
   }
 
   @Get()
+  @Permission({ resource: ResourceEnum.USER, resourceOperation: ResourceOperationEnum.READ })
   async findAll(@Query() findAllUsersDto: FindAllUsersDto): Promise<UsersResponseDto> {
     const payload = await this.userService.findAll(findAllUsersDto);
 
@@ -33,6 +37,7 @@ export class UserController {
   }
 
   @Get(':id')
+  @Permission({ resource: ResourceEnum.USER, resourceOperation: ResourceOperationEnum.READ })
   async findOne(@Param() { id }: IdDto): Promise<UserResponseDto> {
     const payload = await this.userService.findOne(id);
 
@@ -45,6 +50,7 @@ export class UserController {
   }
 
   @Patch(':id')
+  @Permission({ resource: ResourceEnum.USER, resourceOperation: ResourceOperationEnum.UPDATE })
   async update(@Param() { id }: IdDto, @Body() updateUserDto: UpdateUserDto): Promise<UserResponseDto> {
     const payload = await this.userService.update(id, updateUserDto);
 
@@ -55,6 +61,7 @@ export class UserController {
   }
 
   @Delete(':id')
+  @Permission({ resource: ResourceEnum.USER, resourceOperation: ResourceOperationEnum.DELETE })
   async remove(@Param() { id }: IdDto): Promise<UserResponseDto> {
     const payload = await this.userService.remove(id);
 

@@ -1,0 +1,29 @@
+version: '3.1'
+
+services:
+  auth-svc:
+    image: auth-svc
+    build:
+      context: .
+      dockerfile: dockerfile
+    ports:
+      - '3000:3000'
+    depends_on:
+      - redis
+      - mongodb
+    environment:
+      - MONGODB_HOST=mongodb://mongodb:27017/app
+      - REDIS_HOST=redis
+      - NODE_ENV=stg
+
+  mongodb:
+    image: mongo
+    restart: always
+    ports:
+      - '27017:27017'
+
+  redis:
+    image: redis
+    restart: always
+    ports:
+      - '6379:6379'
