@@ -14,13 +14,13 @@ async function bootstrap() {
   await app.listen(configService.get('APP_PORT'));
 }
 
-function setupSwaggerDocs(app) {
+export function setupSwaggerDocs(app) {
   const config = new DocumentBuilder().setTitle('API Docs').setVersion('1.0').addBearerAuth().build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('docs', app, document, { swaggerOptions: { persistAuthorization: true } });
 }
 
-function setupNestApp(app) {
+export function setupNestApp(app) {
   app.enableCors();
   app.setGlobalPrefix('api');
   app.enableVersioning({ type: VersioningType.URI, prefix: 'v', defaultVersion: '1.0' });

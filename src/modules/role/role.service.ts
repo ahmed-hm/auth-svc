@@ -41,12 +41,12 @@ export class RoleService {
     return { data: role };
   }
 
-  async update(id: Types.ObjectId, { permission }: UpdateRoleDto): Promise<RoleResponsePayloadDto> {
+  async update(id: Types.ObjectId, updateRoleDto: UpdateRoleDto): Promise<RoleResponsePayloadDto> {
     const { data: role } = await this.findOne(id);
 
     assertReturn({ data: role }, 'Role not found');
 
-    role.set({ permission });
+    role.set(updateRoleDto);
     await role.save();
 
     return { data: role };

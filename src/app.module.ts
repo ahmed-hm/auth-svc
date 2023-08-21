@@ -5,16 +5,19 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from './modules/auth/auth.module';
 import { JWTGuard, PermissionGuard } from './modules/auth/guards';
 import { RoleModule } from './modules/role/role.module';
+import { SeedModule } from './modules/seed/seed.module';
 import { UserModule } from './modules/user/user.module';
 import { GlobalHandler } from './shared/exception-handlers';
 import { configSchema } from './shared/schemas/joi';
 import { mongooseFactory } from './shared/utils';
-import { SeedModule } from './modules/seed/seed.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true, validationSchema: configSchema() }),
-    MongooseModule.forRootAsync({ inject: [ConfigService], useFactory: mongooseFactory }),
+    MongooseModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: async (configService: ConfigService) => (await mongooseFactory(configService)).options,
+    }),
     UserModule,
     RoleModule,
     AuthModule,
