@@ -44,7 +44,7 @@ describe('UserService', () => {
 
   afterAll(async () => {
     await mongoInstance.stop();
-    testingModule.close();
+    await testingModule.close();
   });
 
   it('should be defined', () => {
