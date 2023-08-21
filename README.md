@@ -1,73 +1,59 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
-
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
-
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+This is an application written in Nestjs, which is a framework for building efficient, scalable Node.js server-side applications. It uses modern JavaScript, is built with TypeScript and demos the use of Nestjs with MongoDB via Mongoose ODM, and it is a RESTful API.
 
 ## Installation
 
-```bash
-$ npm install
-```
+You only need docker and docker compose installed on your machine to run this application. If you don't have them installed, you can follow the instructions on the links below:
+
+- [Install Docker](https://docs.docker.com/get-docker/)
+- [Install Docker Compose](https://docs.docker.com/compose/install/)
+
+## Environment Variables
+
+The application uses environment variables to configure the database connection and various other settings. You need to create a `.env` file in the root directory of the project and copy the contents of the `.env.example` file into it. You can then change the values of the variables to suit your needs.
 
 ## Running the app
 
+You can run the application with the following command in the root directory of the project:
+
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+$ docker-compose up
 ```
 
+The application will be available at http://localhost:3000. 
+Note that docker-compose overrides some environment variables to run the application within the container.
+
+## API Documentation
+
+The API documentation is available at http://localhost:3000/docs
+
+## Database
+
+The application uses MongoDB and Redis as datastores. Theses datastores are automatically created when you run the application for the first time.
+
+The application uses in-memory datastores when running in development/test mode. This means that the datastores are destroyed when the application is stopped.
+
+The application uses a persistent database when running in staging/production mode. This means that the datastores are not destroyed when the application is stopped.
+
+## Seed Data
+
+The application uses seed data to populate mongodb with some initial data. The seed data is automatically loaded when you run the application for the first time.
+You can find the seed data in the `src/modules/seed/seed.json` file. You can change the seed data to suit your needs.
+
 ## Test
+
+Tests are written with Jest and Supertest. They are automatically run when you build the application docker image. You can also run them manually with the following commands:
 
 ```bash
 # unit tests
 $ npm run test
 
+# test coverage
+$ npm run test:cov
+
 # e2e tests
 $ npm run test:e2e
 
-# test coverage
-$ npm run test:cov
+$ npm run test:e2e:coverage
 ```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
