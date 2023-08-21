@@ -19,24 +19,6 @@
       }
     },
     {
-      "_id": "64a27b8af50be6424ede3df9",
-      "type": "DEPARTMENT MANAGER",
-      "permission": {
-        "user": {
-          "create": false,
-          "read": true,
-          "update": false,
-          "delete": false
-        },
-        "role": {
-          "create": false,
-          "read": false,
-          "update": false,
-          "delete": false
-        }
-      }
-    },
-    {
       "_id": "64a27b8af50be6424ede3dfa",
       "type": "EMPLOYEE",
       "permission": {
@@ -70,7 +52,7 @@
       "lastName": "Doe",
       "email": "Jane@gmail.com",
       "password": "123456",
-      "role": { "_id": "64a27b8af50be6424ede3df9", "type": "DEPARTMENT MANAGER" }
+      "role": { "_id": "64a27b8af50be6424ede3dfa", "type": "EMPLOYEE" }
     },
     {
       "_id": "64a27b8af50be6424ede3dfd",
@@ -78,7 +60,7 @@
       "lastName": "Doe",
       "email": "Jack@gmail.com",
       "password": "123456",
-      "role": { "_id": "64a27b8af50be6424ede3df9", "type": "DEPARTMENT MANAGER" }
+      "role": { "_id": "64a27b8af50be6424ede3dfa", "type": "EMPLOYEE" }
     },
     {
       "_id": "64a27b8af50be6424ede3dfe",
@@ -86,7 +68,7 @@
       "lastName": "Doe",
       "email": "Jill@gmail.com",
       "password": "123456",
-      "role": { "_id": "64a27b8af50be6424ede3df9", "type": "DEPARTMENT MANAGER" }
+      "role": { "_id": "64a27b8af50be6424ede3dfa", "type": "EMPLOYEE" }
     },
     {
       "_id": "64a27b8af50be6424ede3dff",
@@ -94,7 +76,7 @@
       "lastName": "Doe",
       "email": "James@gmail.com",
       "password": "123456",
-      "role": { "_id": "64a27b8af50be6424ede3df9", "type": "DEPARTMENT MANAGER" }
+      "role": { "_id": "64a27b8af50be6424ede3dfa", "type": "EMPLOYEE" }
     },
     {
       "_id": "64a27b8af50be6424ede3e01",
