@@ -8,9 +8,10 @@ describe('RoleController', () => {
   let controller: RoleController;
   let roleService: RoleService;
   let roleId: Types.ObjectId;
+  let testingModule: TestingModule;
 
-  beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
+  beforeAll(async () => {
+    testingModule = await Test.createTestingModule({
       controllers: [RoleController],
     })
       .useMocker((token) => {
@@ -26,8 +27,12 @@ describe('RoleController', () => {
       })
       .compile();
 
-    controller = module.get<RoleController>(RoleController);
-    roleService = module.get<RoleService>(RoleService);
+    controller = testingModule.get<RoleController>(RoleController);
+    roleService = testingModule.get<RoleService>(RoleService);
+  });
+
+  afterAll(async () => {
+    await testingModule.close();
   });
 
   it('should be defined', () => {

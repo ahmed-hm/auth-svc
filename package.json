@@ -73,7 +73,6 @@
   "jest": {
     "moduleFileExtensions": [
       "js",
-      "json",
       "ts"
     ],
     "rootDir": "./",
