@@ -55,5 +55,6 @@ $ npm run test:cov
 # e2e tests
 $ npm run test:e2e
 
-$ npm run test:e2e:coverage
+# e2e test coverage
+$ npm run test:e2e:cov
 ```
