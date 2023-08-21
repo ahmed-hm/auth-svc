@@ -8,7 +8,7 @@ export const configSchema = () => {
       .default(Environment.DEVELOPMENT),
     APP_PORT: Joi.number().default(3000),
     MONGODB_IN_MEMORY_PORT: Joi.number().when('NODE_ENV', {
-      is: Joi.string().valid(Environment.DEVELOPMENT, Environment.TEST),
+      is: Joi.number().valid(Environment.DEVELOPMENT, Environment.TEST),
       then: Joi.required(),
       otherwise: Joi.optional(),
     }),
@@ -23,5 +23,10 @@ export const configSchema = () => {
     JWT_REFRESH_EXPIRES_IN: Joi.string().required(),
     REDIS_HOST: Joi.string().required(),
     REDIS_PORT: Joi.number().required(),
+    REDIS_IN_MEMORY_PORT: Joi.number().when('NODE_ENV', {
+      is: Joi.number().valid(Environment.DEVELOPMENT, Environment.TEST),
+      then: Joi.required(),
+      otherwise: Joi.optional(),
+    }),
   });
 };
