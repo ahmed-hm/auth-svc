@@ -5,7 +5,7 @@ export interface CustomResponse<T = any> {
 }
 
 export interface CustomResponsePayload<T = any> {
-  data: T | T[];
+  data: T;
   page?: number;
   pages?: number;
   limit?: number;
